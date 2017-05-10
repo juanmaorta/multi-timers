@@ -17,16 +17,17 @@ const mapDispatchToProps = (dispatch) => ({
 const renderTimers = (timerList) => {
   if (timerList.length === 0) return null
 
-  return timerList.map((timer) => {
+  return timerList.map((timer, idx) => {
     return <Timer
       name={timer.name}
+      limit={timer.limit}
+      key={idx}
     />
   })
 }
 
 class TimerContainer extends React.Component {
   render () {
-    console.log(this.props)
     return (
       <div>
         {renderTimers(this.props.timers)}
