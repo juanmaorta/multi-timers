@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "start": "webpack-dev-server --open --inline --hot --config webpack.config.js"
+    "start": "webpack-dev-server --open --inline --hot --config webpack.config.js",
+    "test": "standard"
   },
   "author": "Juanma Orta <juanma.orta@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "standard": "^10.0.2",
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {

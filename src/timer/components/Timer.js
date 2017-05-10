@@ -1,14 +1,11 @@
 import React from 'react'
 import { padStart } from 'lodash/string'
 import { round } from 'lodash/math'
-import countdown from 'countdown'
-import moment from 'moment'
 
 import Clock from './Clock'
 import TimerButton from './TimerButton'
 
 class Timer extends React.Component {
-
   constructor (props) {
     super(props)
 
@@ -25,7 +22,7 @@ class Timer extends React.Component {
   countDown () {
     const t = setInterval(() => {
       this.setState({
-        limit: round(this.state.limit -0.01, 2),
+        limit: round(this.state.limit - 0.01, 2),
         running: true
       })
 

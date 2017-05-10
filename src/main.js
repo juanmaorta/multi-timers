@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import { render } from 'react-dom'
 import { createStore } from 'redux'
 import Root from './Root'
@@ -15,6 +15,6 @@ persistStore(store)
 */
 
 render(
-    <Root store={store} />,
+  <Root store={store} />,
     document.getElementById('app')
 )

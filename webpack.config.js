@@ -1,21 +1,21 @@
-var webpack = require('webpack');
-var path = require('path');
+// var webpack = require('webpack')
+var path = require('path')
 
-var APP_DIR = path.resolve(__dirname, './src');
-var BUILD_DIR = path.resolve(__dirname, './public/js');
+var APP_DIR = path.resolve(__dirname, './src')
+var BUILD_DIR = path.resolve(__dirname, './public/js')
 
 module.exports = {
   devtool: 'inline-source-map',
   entry: {
-    app: APP_DIR + '/main.js',
+    app: APP_DIR + '/main.js'
   },
   output: {
     path: BUILD_DIR,
     filename: '[name].js',
-    publicPath: '/js/',
+    publicPath: '/js/'
   },
-  module: {
-    loaders: [
+  module: {
+    loaders: [
       {
         test: /.jsx?$/,
         loader: 'babel-loader',
@@ -25,12 +25,12 @@ module.exports = {
         }
       }
     ]
-  },
+  },
   devServer: {
-    contentBase: path.join(__dirname, "public"),
+    contentBase: path.join(__dirname, 'public'),
     port: 9090,
     hot: true,
     stats: { colors: true },
-    historyApiFallback: true,
-  },
-};
+    historyApiFallback: true
+  }
+}

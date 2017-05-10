@@ -5,7 +5,7 @@ import Timer from './components/Timer'
 import { addTimer } from './actions'
 
 const mapStateToProps = (state, own) => ({
-  timers: state.timer.timers,
+  timers: state.timer.timers
 })
 
 const mapDispatchToProps = (dispatch) => ({
