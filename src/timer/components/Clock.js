@@ -1,9 +1,14 @@
 import React from 'react'
+import { padStart } from 'lodash/string'
+
+const padTime = (timeout) => {
+  return padStart(timeout, 2, '0')
+}
 
 const Clock = (props) => {
   return (
     <div>
-      <h2>{props.time.toString()}</h2>
+      <h2>{padTime(props.time.minutes())}:{padTime(props.time.seconds())}</h2>
     </div>
   )
 }

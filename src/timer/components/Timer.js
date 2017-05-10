@@ -1,6 +1,7 @@
 import React from 'react'
 import { padStart } from 'lodash/string'
 import { round } from 'lodash/math'
+import moment from 'moment'
 
 import Clock from './Clock'
 import TimerButton from './TimerButton'
@@ -8,38 +9,45 @@ import TimerButton from './TimerButton'
 class Timer extends React.Component {
   constructor (props) {
     super(props)
+    const _limit = moment(`00:${props.limit}:00`, 'HH:mm:ss')
 
     this.state = {
       running: false,
-      limit: parseInt(props.limit, 10),
-      start: parseInt(props.limit, 10)
+      limit: _limit,
+      start: _limit
     }
 
     this.countDown = this.countDown.bind(this)
     this.startStop = this.startStop.bind(this)
   }
 
+  nextMilliseconds (time) {
+    return time.clone().add(-1, 'seconds')
+  }
+
   countDown () {
     const t = setInterval(() => {
       this.setState({
-        limit: round(this.state.limit - 0.01, 2),
+        // limit: round(this.state.limit - 0.01, 2),
+        limit: this.nextMilliseconds(this.state.limit),
         running: true
       })
 
-      if (this.state.limit <= 0) {
+      if (this.state.limit.seconds() <= 0 && this.state.limit.minutes() <= 0) {
         clearInterval(t)
         this.setState({
           limit: this.state.start,
           running: false
         })
       }
-    }, 10)
+    }, 1000)
   }
 
   startStop () {
     if (this.state.running) {
       this.setState({
-        limit: 0
+        limit: this.state.start,
+        running: false
       })
 
       return
