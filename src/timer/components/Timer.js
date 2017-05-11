@@ -59,7 +59,7 @@ class Timer extends React.Component {
   render () {
     return (
       <div>
-        <h1>{this.props.name}: {padStart(this.props.limit, 2, '0')} min</h1>
+        <h3>{this.props.name}: {padStart(this.props.limit, 2, '0')} min</h3>
         <Clock
           time={this.state.limit}
         />

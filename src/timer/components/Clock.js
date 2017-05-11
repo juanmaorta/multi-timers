@@ -8,7 +8,7 @@ const padTime = (timeout) => {
 const Clock = (props) => {
   return (
     <div>
-      <h2>{padTime(props.time.minutes())}:{padTime(props.time.seconds())}</h2>
+      <h1>{padTime(props.time.minutes())}:{padTime(props.time.seconds())}</h1>
     </div>
   )
 }

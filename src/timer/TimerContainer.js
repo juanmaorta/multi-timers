@@ -29,7 +29,7 @@ const renderTimers = (timerList) => {
 const renderOptions = (max = 10) => {
   const tags = []
 
-  for (let i = 1; i < max; i++) {
+  for (let i = 0; i < max; i++) {
     tags.push(<option value={i} key={i}>{i} min</option>)
   }
 
@@ -66,24 +66,35 @@ class TimerContainer extends React.Component {
   render () {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            name='name'
-            onChange={this.handleChange}
-            placeholder='Your timer name'
-            required
-            type='text'
-          />
-          <select
-            name='minutes'
-            onChange={this.handleChange}
-          >
-            {renderOptions(10)}
-          </select>
-          <input type='submit' value='Add timer' />
-        </form>
-
-        {renderTimers(this.props.timers)}
+        <nav className='navbar navbar-default'>
+          <div className='container-fluid'>
+            <div className='navbar-header'>
+              <form onSubmit={this.handleSubmit} className='form-inline'>
+                <div className='form-group'>
+                  <div className='input-group'>
+                    <input
+                      name='name'
+                      onChange={this.handleChange}
+                      placeholder='Your timer name'
+                      required
+                      type='text'
+                    />
+                    <select
+                      name='minutes'
+                      onChange={this.handleChange}
+                    >
+                      {renderOptions(10)}
+                    </select>
+                  </div>
+                  <button type='submit' className='btn btn-primary'>Add timer</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        <div>
+          {renderTimers(this.props.timers)}
+        </div>
       </div>
     )
   }
