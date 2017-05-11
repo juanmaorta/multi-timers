@@ -11,8 +11,8 @@ export default (state = defaultState, action) => {
         ...state,
         timers: state.timers.concat(
           {
-            name: 'Timer name',
-            limit: Math.floor(Math.random() * 10) + 1
+            name: action.name,
+            limit: action.minutes
           }
         )
       }

@@ -9,8 +9,8 @@ const mapStateToProps = (state, own) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  addTimer: () => {
-    return dispatch(addTimer())
+  addTimer: (name, minutes) => {
+    return dispatch(addTimer(name, minutes))
   }
 })
 
@@ -26,13 +26,64 @@ const renderTimers = (timerList) => {
   })
 }
 
+const renderOptions = (max = 10) => {
+  const tags = []
+
+  for (let i = 1; i < max; i++) {
+    tags.push(<option value={i} key={i}>{i} min</option>)
+  }
+
+  return tags
+}
+
 class TimerContainer extends React.Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      name: '',
+      minutes: 0
+    }
+
+    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+  }
+
+  handleSubmit (evt) {
+    evt.preventDefault()
+    this.props.addTimer(this.state.name, this.state.minutes)
+  }
+
+  handleChange (evt) {
+    const name = evt.target.name
+    const value = evt.target.value
+
+    this.setState({
+      [name]: value
+    })
+  }
+
   render () {
     return (
       <div>
-        {renderTimers(this.props.timers)}
+        <form onSubmit={this.handleSubmit}>
+          <input
+            name='name'
+            onChange={this.handleChange}
+            placeholder='Your timer name'
+            required
+            type='text'
+          />
+          <select
+            name='minutes'
+            onChange={this.handleChange}
+          >
+            {renderOptions(10)}
+          </select>
+          <input type='submit' value='Add timer' />
+        </form>
 
-        <button onClick={() => this.props.addTimer()}>Add timer</button>
+        {renderTimers(this.props.timers)}
       </div>
     )
   }

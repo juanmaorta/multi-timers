@@ -1,7 +1,7 @@
 import React from 'react'
 
 const getButtonText = (on) => {
-  if (on) return 'Reset'
+  if (on) return 'Restart'
 
   return 'Start'
 }
